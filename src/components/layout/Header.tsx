@@ -2,19 +2,24 @@ import Link from "next/link"
 
 function Header() {
   return (
-    <header className="grid grid-cols-12 ">
-        <Link href="/" className="text-primary text-semibold text-2xl col-span-2"> pizza</Link>
-        <nav className="nav col-span-10">
-          <Link href="/home" className="col-span-1" target="_blank">Home</Link>
-          <Link href="/home" className="col-span-1" target="_blank">Menu</Link>
-          <Link href="/home" className="col-span-1" target="_blank">About</Link>
-          <Link href="/home" className="col-span-1" target="_blank">Contact</Link>
-          <Link 
-          href="/home" 
-          target="_blank"
-          className="py-2 col-span-1 bg-primary text-white text-center rounded-lg">Login</Link>
+    <header className="flex items-center justify-between">
+       
+        <nav className="flex items-center gap-8 text-gray-500">
+          <Link href="/" className="text-primary text-semibold text-2xl"> pizza</Link>
+          <Link href="/">Home</Link>
+          <Link href="/home">Menu</Link>
+          <Link href="/home">About</Link>
+          <Link href="/home">Contact</Link>
+      
         </nav>
-      </header>
+        <nav className="flex items-center gap-x-4 text-gray-500 font-semibold">
+        <Link 
+          href="/login" 
+          className="py-2 px-4 bg-primary text-white text-center rounded-lg ">Login</Link>
+          <Link href="/register">Register</Link>
+          
+        </nav>
+    </header>
   )
 }
 

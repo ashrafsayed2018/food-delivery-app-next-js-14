@@ -1,4 +1,3 @@
-import Header from "@/components/layout/Header";
 import Hero from "@/components/layout/Hero";
 import HomeMenu from "@/components/layout/HomeMenu";
 import SectionHeader from "@/components/layout/SectionHeader";
@@ -6,7 +5,7 @@ import SectionHeader from "@/components/layout/SectionHeader";
 export default function Home() {
   return (
     <>
-      <Header/>
+     
       <Hero/>
       <HomeMenu/>
       {/* about us section */}
@@ -28,9 +27,7 @@ export default function Home() {
           className="text-4xl block mt-8 underline text-blue-500">9652523252</a>
       </section>
       {/* footer */}
-      <footer className="border-t p-8 text-center text-gray-500 mt-16"> 
-        &copy;2023 all rights reserved &copy;
-      </footer>
+   
     </>
   )
 }

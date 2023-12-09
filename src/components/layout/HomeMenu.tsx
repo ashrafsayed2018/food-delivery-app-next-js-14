@@ -5,7 +5,7 @@ import SectionHeader from "./SectionHeader"
 function HomeMenu() {
   return (
    <section>
-        <div className="absolute h-full inset-0">
+        <div className="absolute h-full inset-0 -z-10">
            <div className="w-48 h-48  absolute -left-0 flex justify-start top-72 -z-10">
             <Image 
                 src="/sallad1.png"

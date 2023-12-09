@@ -3,7 +3,7 @@ import Image from "next/image"
 
 function Hero() {
   return (
-    <section className="flex flex-col-reverse md:flex-row justify-between">
+    <section className="flex flex-col-reverse md:flex-row justify-between mt-4">
         <div className="py-8 text-center md:text-left">
             <h1 className="text-4xl font-semibold leading-normal">
                 Everything 
@@ -33,7 +33,6 @@ function Hero() {
         className="w-3/4 mx-auto h-80"
         sizes="w-20"
         priority={true}
-        objectFit="contain"
         alt="pizza image" />
         </div>
     </section>
