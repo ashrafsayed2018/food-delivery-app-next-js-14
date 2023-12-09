@@ -5,8 +5,6 @@
 /* * {
     outline: 1px solid red
 } */
-section.hero {
-    @apply grid;
-    margin-top: 2rem;
-    grid-template-columns: .6fr .4fr;
+.nav {
+    @apply grid grid-cols-5 items-center  text-gray-500 font-semibold
 }
