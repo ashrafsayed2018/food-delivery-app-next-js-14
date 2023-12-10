@@ -6,13 +6,13 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 function Register() {
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
-  const [creatingUser,setcreatingUser] = useState(false)
+  const [creatingUser,setCreatingUser] = useState(false)
   const [userCreated,setUserCreated] = useState(false)
   const [error,setError] = useState(false)
 
   const handleFormSubmit = async (e:FormEvent) => {
       e.preventDefault();
-      setcreatingUser(false);
+      setCreatingUser(false);
       try {
        const response = await fetch("/api/register", {
           method: "POST",
@@ -28,7 +28,7 @@ function Register() {
         setUserCreated(true);
         setError(false);
        }
-        setcreatingUser(true);
+        setCreatingUser(true);
      
       } catch (error) {
          setError(true)
@@ -36,7 +36,7 @@ function Register() {
   }
   return (
     <section className='mt-8 mb-32'>
-        <h1 className='text-center text-primary text-xl my-4'>Register</h1>
+        <h1 className='text-center font-extrabold text-primary text-xl my-4'>Register</h1>
         {userCreated && 
             ( 
               <div className='text-center mt-4 text-green-500 font-semibold uppercase'>
@@ -70,10 +70,11 @@ function Register() {
             src="/google.png" 
             width={24}
             height={24}
+            className='w-6 h-6'
             alt=""/>
             <span>Login with google</span>
           </button>
-          <div className='text-center my-4 text-gray-500 border-t-2'>Already have an account
+          <div className='text-center mt-8 pt-4 text-gray-500 border-t-2'>Already have an account
             <Link href="/login" className='underline font-semibold text-lg'>  Login &raquo;</Link>
           </div>
         </form>

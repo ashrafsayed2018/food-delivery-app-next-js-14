@@ -14,11 +14,11 @@ function Hero() {
             </p>
             {/* buttons */}
             <div className="flex gap-4 justify-around w-full">
-                <button className="bg-primary text-white rounded-full px-6 py-2 flex gap-3 items-center">
+                <button className="flex gap-3 items-center justify-center bg-primary text-white rounded-full px-6 py-2 ">
                     <span>Order now</span>
-                    <Right className="w-6 h-6"/>
+                    <Right className="w-6 h-6 "/>
                 </button>
-                <button className="bg-gray-200 rounded-full px-6 py-2 flex gap-2 items-center">
+                <button className="flex gap-3 items-center justify-center  bg-gray-200 rounded-full px-6 py-2 ">
                     <span className="font-semibold">Learn more</span>
                     <Right className="w-6 h-6"/>
                 </button>

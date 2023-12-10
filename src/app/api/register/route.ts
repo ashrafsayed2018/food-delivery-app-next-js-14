@@ -6,7 +6,7 @@ import {  NextResponse } from "next/server";
 export async function POST(req: Request, res: Response) {
 
    const body = await req.json();
-    mongoose.connect(process.env.MANGO_URL as string);
+    mongoose.connect(process.env.MONGODB_URL as string);
 
    const createdUser =  await User.create(body)
     return  NextResponse.json({
