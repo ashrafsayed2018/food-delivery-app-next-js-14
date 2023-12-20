@@ -1,43 +1,54 @@
 "use client"
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useState } from 'react'
+import toast from 'react-hot-toast'
 
 function Register() {
+  const [name,setName] = useState("")
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
-  const [creatingUser,setCreatingUser] = useState(false)
-  const [userCreated,setUserCreated] = useState(false)
-  const [error,setError] = useState(false)
+  const router = useRouter() 
 
   const handleFormSubmit = async (e:FormEvent) => {
       e.preventDefault();
-      setCreatingUser(false);
       try {
-       const response = await fetch("/api/register", {
-          method: "POST",
-          body:JSON.stringify({email,password}),
-          headers: {
-            "Content-Type": "application/json"
-          }
-        })
+      const registerPromise = new Promise<void>(async (resolve, reject) => {
 
-       if(!response.ok) {
-        setError(true)
-       } else {
-        setUserCreated(true);
-        setError(false);
-       }
-        setCreatingUser(true);
      
-      } catch (error) {
-         setError(true)
-      }
+          const response = await fetch("/api/register", {
+             method: "POST",
+             body:JSON.stringify({name,email,password}),
+             headers: {
+               "Content-Type": "application/json"
+             }
+           })
+   
+          if(!response.ok) {
+              reject()
+          } else {
+              resolve();
+              router.push("/login");
+          }
+        
+        
+      })
+
+      await toast.promise(registerPromise,{
+        loading:"register",
+        success:"success registration",
+        error:"error",
+    })
+    } catch (error) {
+      console.log(error);
+   }
+    
   }
   return (
     <section className='mt-8 mb-32'>
         <h1 className='text-center font-extrabold text-primary text-xl my-4'>Register</h1>
-        {userCreated && 
+        {/* {userCreated && 
             ( 
               <div className='text-center mt-4 text-green-500 font-semibold uppercase'>
                 your account is created 
@@ -51,7 +62,7 @@ function Register() {
             (
               <div className='max-w-xs mx-auto text-center mt-4 bg-primary rounded-xl p-3 text-white/90'>An Error has occurred</div>
             )
-          }
+          } */}
         <form className='block max-w-xs mx-auto' onSubmit={handleFormSubmit}>
           <input type="email" placeholder='Email'
            value={email}
@@ -62,8 +73,8 @@ function Register() {
             value={password}
             onChange={(e:ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} />
           <button 
-          type='submit'
-          disabled={creatingUser} className={creatingUser ? "isLoading" :""}>Register</button>
+            type='submit'
+            >Register</button>
           <div className='my-4 text-center text-gray-500'>Or Login with Provider</div>
           <button className='flex items-center gap-4 justify-center'>
             <Image 
