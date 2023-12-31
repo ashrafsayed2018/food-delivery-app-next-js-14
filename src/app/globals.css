@@ -33,3 +33,10 @@ input:disabled {
   @apply bg-gray-300 text-gray-500 cursor-not-allowed
 
 }
+div.tabs > * {
+  @apply bg-gray-300 text-gray-700 py-2 px-4 rounded-full
+}
+
+div.tabs > .active {
+  @apply bg-primary text-white
+}

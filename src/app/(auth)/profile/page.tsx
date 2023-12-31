@@ -1,5 +1,5 @@
 'use client'
-
+import UserTabs from "@/components/layout/UserTabs";
 import {useSession } from "next-auth/react"
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -15,6 +15,8 @@ import toast from "react-hot-toast";
     const [postalCode,setPostalCode] = useState("")
     const [city,setCity] = useState("")
     const [country,setCountry] = useState("")
+    const [isAdmin,setIsAdmin] = useState(false)
+    const [isProfileFetched,setIsProfileFetched] = useState(false)
     const  {data: session, status, update} = useSession();
 
 
@@ -27,11 +29,13 @@ import toast from "react-hot-toast";
             setImage(session?.user?.image!)
             fetch("/api/profile").then((response) => {
                 response.json().then((data) => {
+                    setIsProfileFetched(true);
                     setPhone(data.phone)
                     setPostalCode(data.postalCode)
                     setCity(data.city)
                     setCountry(data.country)
                     setStreetAddress(data.streetAddress)
+                    setIsAdmin(data.isAdmin)
                     console.log(data)
                 })
             });
@@ -137,9 +141,10 @@ import toast from "react-hot-toast";
   return (
    
     <section className='mt-8 mb-32'>
-        <h1 className='text-center font-extrabold text-primary text-xl my-4'>Profile</h1>
+
+        <UserTabs isAdmin={isAdmin}/>
      
-        <div className="max-w-md mx-auto">
+        <div className="max-w-md mx-auto mt-8">
             <div className="flex gap-x-3 p-2 bg-gray-100 rounded-lg mb-72">
                 <div className="flex-2 rounded-md max-w-[144px]bg-gray-300 flex-col justify-between">
                     {image &&  

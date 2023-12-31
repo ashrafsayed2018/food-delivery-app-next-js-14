@@ -2,9 +2,11 @@ import mongoose from "mongoose";
 import { getServerSession } from "next-auth";
 import { options } from "../auth/[...nextauth]/options";
 import { User } from "@/models/User";
+import { UserProfile } from "@/models/UserProfile";
 
 type dataProps = {
-    name: string
+    name: string,
+    image: string,
 }
 
 // connect to mongoose
@@ -23,10 +25,12 @@ export async function PUT(req: Request, res: Response) {
          data = await response;
     });   
  
+   const {name,image,...profileData} = data!;
    const session = await getServerSession(options)
    const email = session?.user?.email;
    // update user in database   
    await User.updateOne({email},data!)
+   await UserProfile.findOneAndUpdate({email},profileData,{upsert:true});
    return Response.json({
         status: 200,
         data: session!.user
@@ -39,6 +43,6 @@ export async function GET() {
     const session = await getServerSession(options)
     const email = session?.user?.email;
     return Response.json(
-        await User.findOne({email})
+        await UserProfile.findOne({email})
     )
 }
